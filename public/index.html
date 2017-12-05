@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <title>React App</title>
+  <style>
+    body {
+      min-width: 600px;
+    }
+
+    .wrap {
+      background: url("img/img/10.1-min.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      padding: 0 0 10px;
+    }
+
+    #map {
+      width: 100%;
+      margin: 10px auto 0;
+      max-width: 900px;
+      height: 400px;
+    }
+
+    .MyMap {
+      height: 400px;
+      padding: 0 10px;
+      margin-top: 10px;
+    }
+
+    .header {
+      padding: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  <script src="./jquery.min.js" type="text/javascript"></script>
+  <script src="./mapbasics.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,700&amp;subset=cyrillic">
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div class="wrap">
+    <div id="root"></div>
+    <div class="MyMap">
+      <div id="map"></div>
+    </div>
+  </div>
+  <script>
+   /* $(function () {
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      $(".NavLink").click(function () {
+
+        let url = getRandomInt(1, 13);
+        $('.wrap').css({
+          "background": 'url("img/img/' + url + '-min.jpg")',
+          "background-repeat": "no-repeat",
+          "background-size": "cover"
+        })
+
+      });
+    });*/
+
+  </script>
+</body>
+
+</html>
