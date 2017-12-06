@@ -2,22 +2,17 @@ import React from 'react';
 
 export default () => {
 
-  /* handleSubmitCoords = (searchcoords) => {
-     let sum_lol = searchcoords.lon + searchcoords.lat,
-       searchcoordslat = searchcoords.lat,
-       searchcoordslon = searchcoords.lon;
- 
-     if (!sum_lol) {
-       let inplon = $('#lon').val() + '',
-         inplat = $('#lat').val() + '';
- 
-       if (!inplon && !inplat) return;
-       sum_lol = inplon + inplat;
-       searchcoordslat = inplat;
-       searchcoordslon = inplon;
-     }}*/
-
   return <div className="Screen HelloThereScreen">
-    HAEYAY FELLAS
+    <p className="Welcome">Welcome to Meteoscreen Application!</p>
+    <p>This application is the prototype of the developed Restmanager Application.</p>
+
+    <p>You can use implementation of search functionality for current weather
+      <br /> and its forecast for next 5 days at this stage.
+      <br />Place can be set in two ways: by specifying the name of the city or its coordinates.
+      <br />Yandex map is entered for convenience of a choice coordinates.</p>
+
+    <p>Thanks for using our application!</p>
+    <p> Sincerely, Meteoscreen Application Development Team.</p>
+    <img src="sun.png"></img>
   </div>
 };  

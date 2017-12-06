@@ -20,10 +20,10 @@ export default class WeatherDisplay extends React.Component {
 
     /*this.setState({ zip: this.props.zip });*/
     if (cnt != -1) {
-      URL = "http://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
+      URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
     }
     else {
-      URL = "http://api.openweathermap.org/data/2.5/weather?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
+      URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
 
     }
     fetch(URL).then(response => response.json()).then(json => {

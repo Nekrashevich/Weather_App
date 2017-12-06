@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import city from './city.list-short.json';
 import $ from './jquery.min.js';
 import SearchCity from './components/SearchCity.js';
 import SearchCoords from './components/SearchCoords.js';
@@ -9,9 +8,9 @@ import CommonDisplay from './components/CommonDisplay.js';
 
 
 const DISPLAYS = [
-  { name: "HelloThere", code: "0" },
-  { name: "CurrentWeather", code: "1" },
-  { name: "ForecastWeather", code: "2" }
+  { name: "Welcome", code: "0" },
+  { name: "Current Weather", code: "1" },
+  { name: "Forecast Weather", code: "2" }
 ];
 
 class App extends Component {
@@ -21,8 +20,8 @@ class App extends Component {
       activePlace: 'Moscow',
       longitude: '',
       latitude: '',
-      code: "1",
-      searchVisible: true
+      code: "0",
+      searchVisible: false
     };
   }
 
@@ -56,8 +55,9 @@ class App extends Component {
       <div className="App">
         <div className="App-Nav">
           <div className="Nav">
+            <img className="NavIcon" src="sun.png" alt="sun"></img>
             {DISPLAYS.map((display, index) => (
-              <a className={'NavLink ' + ((visible == DISPLAYS[index].code) ? 'NavLink-Active' : '')}
+              <a className={'NavLink ' + ((visible === DISPLAYS[index].code) ? 'NavLink-Active' : '')}
                 key={display.name}
                 onClick={() => {
 
@@ -76,7 +76,7 @@ class App extends Component {
  
                    });*/
 
-                  if (display.code == 0) {
+                  if (display.code === '0') {
                     $('#map')[0].style.display = "none";
                     this.setState({ code: display.code, searchVisible: false });
                   }
@@ -94,7 +94,7 @@ class App extends Component {
 
           <CommonDisplay zip={activePlace} key={activePlace} lon={this.state.longitude} lat={this.state.latitude} code={this.state.code} />
 
-          {(searchVisible == true) ? <div className="SearchForm">
+          {(searchVisible === true) ? <div className="SearchForm">
             <span className="SearchFormSpan">Search:</span>
             <SearchCity handleSubmit={this.handleSubmitCity} />
             <SearchCoords handleSubmit={this.handleSubmitCoords} />

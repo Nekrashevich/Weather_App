@@ -1,3 +1,7 @@
+body{
+  font-family: Roboto, sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -6,6 +10,7 @@
 
 .App-Nav{
   background: rgb(59, 59, 55);
+  position: relative;
 }
 
 .Nav{
@@ -19,6 +24,17 @@
   letter-spacing: 0.9px;
   font-size: 20px;
   font-weight: 500;
+  min-height: 36px;
+ 
+}
+
+.NavIcon{
+  width: 34px;
+  height: 34px;
+  margin: auto 0;
+  /*position: absolute;
+  left: 20px;*/
+  cursor: pointer;
 }
 
 .NavLink{
@@ -26,6 +42,7 @@
   padding: 5px;  
   cursor: pointer; 
   color: white;
+  min-height: 23px;
 }
 
 .NavLink-Active{
@@ -191,6 +208,20 @@ top: 15px;
 .ForecastIcon{
   top: 19px;
 }
+
+/*   --- W E L C O M E ---*/
+
+.HelloThereScreen{
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.Welcome{
+  font-size: 30px;
+  font-weight: bold;
+  margin: 45px auto 35px;
+}
+
 
 
 
