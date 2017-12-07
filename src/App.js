@@ -17,9 +17,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      activePlace: 'Moscow',
-      longitude: '',
-      latitude: '',
+      activePlace: '.',
+      longitude: '37.60121895979869',
+      latitude: '55.739857437567906',
       code: "0",
       searchVisible: false
     };
@@ -30,7 +30,7 @@ class App extends Component {
   };
 
   handleSubmitCoords = (searchcoords) => {
-    let sum_lol = searchcoords.lon + searchcoords.lat,
+    let sum_lol = searchcoords.lat + searchcoords.lon,
       searchcoordslat = searchcoords.lat,
       searchcoordslon = searchcoords.lon;
 
@@ -39,7 +39,7 @@ class App extends Component {
         inplat = $('#lat').val() + '';
 
       if (!inplon && !inplat) return;
-      sum_lol = inplon + inplat;
+      sum_lol = inplat + inplon;
       searchcoordslat = inplat;
       searchcoordslon = inplon;
     }
@@ -60,21 +60,6 @@ class App extends Component {
               <a className={'NavLink ' + ((visible === DISPLAYS[index].code) ? 'NavLink-Active' : '')}
                 key={display.name}
                 onClick={() => {
-
-                  /* function getRandomInt(min, max) {
-                     return Math.floor(Math.random() * (max - min)) + min;
-                   }
- 
-                   $(".NavLink").click(function () {
- 
-                     let url = getRandomInt(1, 13);
-                     $('.wrap').css({
-                       "background": 'url("img/img/' + url + '-min.jpg")',
-                       "background-repeat": "no-repeat",
-                       "background-size": "cover"
-                     })
- 
-                   });*/
 
                   if (display.code === '0') {
                     $('#map')[0].style.display = "none";

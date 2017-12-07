@@ -6,8 +6,7 @@ export default class WeatherDisplay extends React.Component {
     this.state = {
       weatherData: null,
       longtitudeWeather: '',
-      latitudeWeather: ''/*,
-      zip: 'London'*/
+      latitudeWeather: ''
     };
   }
 
@@ -18,7 +17,6 @@ export default class WeatherDisplay extends React.Component {
     let URL,
       cnt = zip.indexOf('.');
 
-    /*this.setState({ zip: this.props.zip });*/
     if (cnt != -1) {
       URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
     }
@@ -30,7 +28,6 @@ export default class WeatherDisplay extends React.Component {
       this.setState({ weatherData: json });
     });
 
-    //  <p>dt: {weatherData.dt}°</p>
   }
   render() {
     const weatherData = this.state.weatherData;
@@ -44,7 +41,7 @@ export default class WeatherDisplay extends React.Component {
       );
     else {
       const weather = weatherData.weather[0];
-      const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
+      const iconUrl = "https://openweathermap.org/img/w/" + weather.icon + ".png";
       return (
         <div className="Screen">
           <h1>

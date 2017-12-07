@@ -23,22 +23,9 @@ export default class ForecastDisplay extends React.Component {
       weatherData: null,
       longtitudeWeather: '',
       latitudeWeather: '',
-      // zip: '',
       countdate: '0'
     };
   }
-
-  /* handleSubmitCount = (count) => {
-     this.setState({ countdate: count });
-   }
- 
-   handleSubmitCoords = (searchcoords) => {
-     let sum_lol = searchcoords.lon + searchcoords.lat,
-       searchcoordslat = searchcoords.lat,
-       searchcoordslon = searchcoords.lon;
- 
-     this.setState({ activePlace: sum_lol + '.', longitude: searchcoordslon, latitude: searchcoordslat });
-   }*/
 
   componentDidMount() {
     const zip = this.props.zip,
@@ -48,7 +35,6 @@ export default class ForecastDisplay extends React.Component {
     let URL,
       cnt = zip.indexOf('.');
 
-    // this.setState({ zip: this.props.zip });
     if (cnt != -1) {
       URL = "https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
     }
@@ -56,14 +42,12 @@ export default class ForecastDisplay extends React.Component {
       URL = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
 
     }
-    //  console.log('fetch start', URL);
     fetch(URL).then(response => response.json()).then(json => {
       this.setState({ weatherData: json });
     });
 
   }
   render() {
-    //  console.log(this.props.zip, this.state.zip);
     const weatherData = this.state.weatherData;
 
     if (!weatherData) return <div className="Screen"></div>;
@@ -77,11 +61,8 @@ export default class ForecastDisplay extends React.Component {
 
       const selectDate = Number(this.state.countdate);
       const countRequestDate = Number(weatherData.cnt);
-      // const weather = weatherData.list[selectDate].weather[0];
-      // const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
 
-      let [, initialTime] = weatherData.list[0].dt_txt.split(' ');
-
+      let initialTime = weatherData.list[0].dt_txt.split(' ')[1];
       let initcount;
 
       TIMES.map((function (times) {
@@ -187,16 +168,14 @@ export default class ForecastDisplay extends React.Component {
                   {display.title}
                 </h1>
                 <p> Time: {timeConverter(weatherData.list[display.list].dt).split(' ')[1]} </p>
+
                 <p className="" style={{ marginTop: '-20px' }}>
                   {weatherData.list[display.list].weather[0].main}  &nbsp;-
-                  <img className="Icon ForecastIcon" src={"http://openweathermap.org/img/w/" + weatherData.list[display.list].weather[0].icon + ".png"}
+                  <img className="Icon ForecastIcon" src={"https://openweathermap.org/img/w/" + weatherData.list[display.list].weather[0].icon + ".png"}
                     title={weatherData.list[display.list].weather[0].description} alt={weatherData.list[display.list].weather[0].description} />
                 </p>
 
-
-
                 <p>Average temperature: {weatherData.list[display.list].main.temp}°</p>
-
                 <p>Pressure: {weatherData.list[display.list].main.pressure} hPa</p>
                 <p>Wind Speed: {weatherData.list[display.list].wind.speed} m/s</p>
               </div>
