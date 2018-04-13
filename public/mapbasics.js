@@ -1,24 +1,10 @@
 ymaps.ready(init);
 
-
-
 function init() {
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-
-  /*$(".NavLink").click(function () {
-
-    let url = getRandomInt(1, 3);
-    $('.wrap').css({
-      "background": 'url("img/img/' + url + '-min.jpg")',
-      "background-repeat": "no-repeat",
-      "background-size": "cover"
-    })
-
-  });*/
-
 
   var myPlacemark,
     myMap = new ymaps.Map('map', {

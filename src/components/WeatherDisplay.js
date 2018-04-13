@@ -14,16 +14,10 @@ export default class WeatherDisplay extends React.Component {
     const zip = this.props.zip,
       lon = this.props.lon,
       lat = this.props.lat;
-    let URL,
-      cnt = zip.indexOf('.');
 
-    if (cnt != -1) {
-      URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
-    }
-    else {
-      URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
+    let URL = (zip === '') ? "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c"
+      : "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
 
-    }
     fetch(URL).then(response => response.json()).then(json => {
       this.setState({ weatherData: json });
     });
@@ -34,11 +28,9 @@ export default class WeatherDisplay extends React.Component {
 
     if (!weatherData) return <div className="Screen"></div>;
     if (weatherData.cod != 200)
-      return (
-        <div className="Screen">
-          Error - HTTP status code: {weatherData.cod}
-        </div>
-      );
+      return (<div className="Screen">
+        Error - HTTP status code: {weatherData.cod}
+      </div>);
     else {
       const weather = weatherData.weather[0];
       const iconUrl = "https://openweathermap.org/img/w/" + weather.icon + ".png";

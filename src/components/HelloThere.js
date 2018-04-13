@@ -13,6 +13,6 @@ export default () => {
 
     <p>Thanks for using our application!</p>
     <p> Sincerely, Meteoscreen Application Development Team.</p>
-    <img src="sun.png"></img>
+    <img src='sun.png' alt="sun"></img>
   </div>
 };  

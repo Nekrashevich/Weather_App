@@ -32,8 +32,6 @@ body{
   width: 34px;
   height: 34px;
   margin: auto 0;
-  /*position: absolute;
-  left: 20px;*/
   cursor: pointer;
 }
 
@@ -103,14 +101,14 @@ body{
   z-index: 1;
 }
 
-.LinkRight{
+.LinkRight, .LinkRight:active{
   background: url(img/arrow-right.png) no-repeat left top, rgba(255, 255, 255, 0);
   background-position: 55% 49%;
   border-radius: 15px;
   right: 15px;
 }
 
-.LinkLeft{
+.LinkLeft, .LinkLeft:active{
   background: url(img/arrow-left.png) no-repeat left top, rgba(255, 255, 255, 0);
   background-position: 45% 49%;
   border-radius: 15px;
@@ -118,17 +116,13 @@ body{
 }
 
 .LinkLeft:active{
-  background: url(img/arrow-left.png) no-repeat left top, rgba(255, 255, 255, 0.3);
+  background: url(img/arrow-left.png) no-repeat left top, rgba(255, 255, 255, 0.3); 
   background-position: 45% 49%;
-  border-radius: 15px;
-  left: 15px;
 }
 
 .LinkRight:active{
   background: url(img/arrow-right.png) no-repeat left top, rgba(255, 255, 255, 0.3);
   background-position: 55% 49%;
-  border-radius: 15px;
-  right: 15px;
 }
 
 .ForecastHeaderDesc{
@@ -221,17 +215,3 @@ top: 15px;
   font-weight: bold;
   margin: 45px auto 35px;
 }
-
-
-
-
-/*160 0 255 0.6*/
-/*0 0 255 0.6*/
-/*background: rgba(255, 0, 0, 0.6)*/
-/*rgba(0, 0, 0, 0.6);*/
-/*.wrap{
-  background: url("img/1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 0 0 10px;
-}*/

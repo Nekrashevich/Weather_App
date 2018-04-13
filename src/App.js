@@ -17,7 +17,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      activePlace: '.',
+      activePlace: '',
       longitude: '37.60121895979869',
       latitude: '55.739857437567906',
       code: "0",
@@ -26,30 +26,30 @@ class App extends Component {
   }
 
   handleSubmitCity = (searchcity) => {
-    this.setState({ activePlace: searchcity.city + "" });
+    this.setState({ activePlace: searchcity.city });
   };
 
   handleSubmitCoords = (searchcoords) => {
-    let sum_lol = searchcoords.lat + searchcoords.lon,
-      searchcoordslat = searchcoords.lat,
-      searchcoordslon = searchcoords.lon;
+    let slat = searchcoords.lat,
+      slon = searchcoords.lon;
 
-    if (!sum_lol) {
+    if (!slat || !slon) {
       let inplon = $('#lon').val() + '',
         inplat = $('#lat').val() + '';
 
-      if (!inplon && !inplat) return;
-      sum_lol = inplat + inplon;
-      searchcoordslat = inplat;
-      searchcoordslon = inplon;
+      if (!inplon || !inplat) return;
+      slat = inplat;
+      slon = inplon;
     }
 
-    this.setState({ activePlace: sum_lol + '.', longitude: searchcoordslon, latitude: searchcoordslat });
-  }
+    this.setState({ activePlace: '', longitude: slon, latitude: slat });
+  };
 
   render() {
     const activePlace = this.state.activePlace;
-    let visible = this.state.code;
+    const key = activePlace + 'lon' + this.state.longitude + 'lat' + this.state.latitude;
+
+    let activeLink = this.state.code;
     let searchVisible = this.state.searchVisible;
     return (
       <div className="App">
@@ -57,27 +57,19 @@ class App extends Component {
           <div className="Nav">
             <img className="NavIcon" src="sun.png" alt="sun"></img>
             {DISPLAYS.map((display, index) => (
-              <a className={'NavLink ' + ((visible === DISPLAYS[index].code) ? 'NavLink-Active' : '')}
+              <a className={'NavLink ' + ((activeLink === DISPLAYS[index].code) ? 'NavLink-Active' : '')}
                 key={display.name}
                 onClick={() => {
-
-                  if (display.code === '0') {
-                    $('#map')[0].style.display = "none";
-                    this.setState({ code: display.code, searchVisible: false });
-                  }
-                  else {
-                    this.setState({ code: display.code, searchVisible: true });
-                    $('#map')[0].style.display = "block";
-                  }
-                }}
-              >
+                  $('#map')[0].style.display = display.code === '0' ? "none" : "block";
+                  this.setState({ code: display.code, searchVisible: display.code === '0' ? false : true });
+                }}>
                 {display.name}
               </a>
             ))}</div>
         </div>
         <div className="App-Content">
 
-          <CommonDisplay zip={activePlace} key={activePlace} lon={this.state.longitude} lat={this.state.latitude} code={this.state.code} />
+          <CommonDisplay zip={activePlace} key={key} lon={this.state.longitude} lat={this.state.latitude} code={this.state.code} />
 
           {(searchVisible === true) ? <div className="SearchForm">
             <span className="SearchFormSpan">Search:</span>

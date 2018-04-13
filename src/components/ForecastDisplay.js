@@ -1,7 +1,4 @@
 import React from 'react';
-import ChoiceCountDate from './ChoiceCountDate.js';
-import SearchCoords from './SearchCoords.js';
-import Button from './Button.js';
 
 const TIMES = [
   { time: "00:00:00", code: 0 },
@@ -32,16 +29,9 @@ export default class ForecastDisplay extends React.Component {
       lon = this.props.lon,
       lat = this.props.lat;
 
-    let URL,
-      cnt = zip.indexOf('.');
+    let URL = (zip === '') ? "https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c"
+      : "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
 
-    if (cnt != -1) {
-      URL = "https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=" + lat + "&lon=" + lon + "&APPID=3a03952b75ba92098434edd9793dd61c";
-    }
-    else {
-      URL = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=" + zip + "&APPID=3a03952b75ba92098434edd9793dd61c";
-
-    }
     fetch(URL).then(response => response.json()).then(json => {
       this.setState({ weatherData: json });
     });
@@ -75,14 +65,14 @@ export default class ForecastDisplay extends React.Component {
       let lastDay = ((countRequestDate - lastTime) % 8 == 0) ? (countRequestDate - lastTime)
         / 8 : (Math.floor((countRequestDate - lastTime) / 8) + 1);
 
-      console.log(lastDay);
-      console.log(selectDate);
-      let listArray = [];
+      //console.log(lastDay);
+      //console.log(selectDate);
 
+      let listArray = [];
       let listmin = Math.max(0, 8 * selectDate - initcount);
       let listmax = Math.min(countRequestDate - 1, 8 * selectDate + lastTime - 1);
 
-      console.log(initcount, listmin, listmax, countRequestDate);
+      //console.log(initcount, listmin, listmax, countRequestDate);
 
       let tempinit = 1;
       if (selectDate == 0) {
@@ -119,33 +109,23 @@ export default class ForecastDisplay extends React.Component {
         let time = a.getFullYear() + '-' + (a.getMonth() + 1) + '-' + date + ' ' + hour + ':00:00';
         return time;
       }
-      /*<p>dt:{weatherData.list[0].dt}-----{weatherData.list[countRequestDate - 1].dt}</p>*/
-      /*         <p>High temperature: {weatherData.list[display.list].main.temp_max}°</p>
-                      <p>Low temperature: {weatherData.list[display.list].main.temp_min}°</p>*/
 
-
-      console.log(listArray);
+      //console.log(listArray);
 
       let [forecastDate,] = timeConverter(weatherData.list[listmin].dt).split(' ');
-
 
       return (
         <div className="ForecastDisplay">
 
           <div className="Screen ForecastHeader">
+
             <a className="ForecastDisplayLink LinkLeft" onClick={() => {
-              if (this.state.countdate == 0)
-                this.setState({ countdate: lastDay + "" });
-              else
-                this.setState({ countdate: Number(this.state.countdate) - 1 + '' });
+              this.setState({ countdate: this.state.countdate == 0 ? lastDay + "" : Number(this.state.countdate) - 1 + '' });
             }}></a>
 
 
             <a className="ForecastDisplayLink LinkRight" onClick={() => {
-              if (this.state.countdate == lastDay)
-                this.setState({ countdate: "0" });
-              else
-                this.setState({ countdate: Number(this.state.countdate) + 1 + '' });
+              this.setState({ countdate: this.state.countdate == lastDay ? "0" : Number(this.state.countdate) + 1 + '' });
             }}></a>
 
             <div className="ForecastHeader">
